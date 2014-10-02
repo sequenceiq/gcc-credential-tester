@@ -34,6 +34,12 @@ public class GccTesterMain {
     private static final List<String> SCOPES = Arrays.asList(ComputeScopes.COMPUTE, StorageScopes.DEVSTORAGE_FULL_CONTROL);
 
     public static void main(String[] args) {
+
+        if (args.length < 3) {
+          System.out.println("Usage:");
+          System.out.println("  java -jar gcc-credential-tester.jar <keyFile> <subscriptionId> <projectId>");
+            System.exit(-1);
+        }
         String key = "";
         try {
             FileInputStream fisTargetFile = new FileInputStream(new File(args[0]));
