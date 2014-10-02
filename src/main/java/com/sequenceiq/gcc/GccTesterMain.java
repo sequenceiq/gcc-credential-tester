@@ -1,6 +1,8 @@
 package com.sequenceiq.gcc;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.security.GeneralSecurityException;
@@ -10,6 +12,7 @@ import java.security.Security;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMReader;
 
@@ -30,20 +33,25 @@ public class GccTesterMain {
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final List<String> SCOPES = Arrays.asList(ComputeScopes.COMPUTE, StorageScopes.DEVSTORAGE_FULL_CONTROL);
 
-    private static String key = "";
-   private static String serviceAccountId = "";
-    private static String projectId = "";
-
     public static void main(String[] args) {
+        String key = "";
+        try {
+            FileInputStream fisTargetFile = new FileInputStream(new File(args[0]));
+            key = IOUtils.toString(fisTargetFile, "UTF-8");
+        } catch (Exception e) {
+            System.out.println("File not found");
+            System.exit(1);
+        }
+
         validate(key);
-        Compute compute = buildCompute(projectId, key, serviceAccountId);
+        Compute compute = buildCompute(args[2], key, args[1]);
 
         if(compute == null){
             System.out.println("Your credentials are invalid...");
             System.exit(1);
         } else {
             try {
-                Compute.Images.List list = compute.images().list(projectId);
+                Compute.Images.List list = compute.images().list(args[2]);
                 ImageList execute = list.execute();
                 for(Image image : execute.getItems()) {
                     System.out.println(image.getName());
