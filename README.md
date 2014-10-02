@@ -11,7 +11,7 @@ curl -LO https://github.com/sequenceiq/gcc-credential-tester/releases/download/1
 ###Prepeare your account
 
 Follow the instructions: https://cloud.google.com/storage/docs/authentication#service_accounts
-Create a `Service account` and `Generate a new P12 key`. Onceyou have downloaded the key use `openssl` to convert it to PEM.
+Create a `Service account` and `Generate a new P12 key`. Once you have downloaded the key use `openssl` to convert it to PEM.
 
 `openssl pkcs12 -in path/to/key.p12 -nodes -nocerts > path/to/key.pem`
 
