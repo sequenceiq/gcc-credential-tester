@@ -66,8 +66,12 @@ public class GccTesterMain {
             try {
                 Compute.Images.List list = compute.images().list(args[2]);
                 ImageList execute = list.execute();
-                for(Image image : execute.getItems()) {
-                    System.out.println(image.getName());
+                try {
+                    for(Image image : execute.getItems()) {
+                        System.out.println(image.getName());
+                    }
+                } catch (NullPointerException ex) {
+                    System.out.println("You have no images...");
                 }
             } catch (IOException e) {
                 System.out.println("Your credentials are invalid: " + e.getMessage());
