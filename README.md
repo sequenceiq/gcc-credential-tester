@@ -28,6 +28,12 @@ Make sure that at API level (APIs and auth) you have enabled:
 * Google Compute Engine
 * Google Compute Engine Instance Group Manager API
 * Google Compute Engine Instance Groups API
+* BigQuery API 
+* Google Cloud Deployment Manager API 
+* Google Cloud DNS API 
+* Google Cloud SQL
+* Google Cloud Storage
+* Google Cloud Storage JSON API
 
 After that you are ready to use the Tester JAR.
 
