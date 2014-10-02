@@ -32,3 +32,10 @@ After that you are ready to use the Tester JAR.
 ```
 java -jar gcc-credential-tester.jar <keyPEMFile> <subscriptionId> <projectId>
 ```
+The expected result should be something like this:
+
+```
+sequenceiq-debian
+Your credential is ok...
+```
+
