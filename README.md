@@ -15,7 +15,7 @@ Create a `Service account` and `Generate a new P12 key`. Once you have downloade
 
 `openssl pkcs12 -in path/to/key.p12 -nodes -nocerts > path/to/key.pem`
 
-Make sure that at API level (APIs and auth) you have enabled:
+Make sure that at API level (**APIs and auth** menu) you have enabled:
 
 * Google Compute Engine
 * Google Compute Engine Instance Group Manager API
