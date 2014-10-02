@@ -15,14 +15,6 @@ Create a `Service account` and `Generate a new P12 key`. Onceyou have downloaded
 
 `openssl pkcs12 -in path/to/key.p12 -nodes -nocerts > path/to/key.pem`
 
-Edit the new PEM file and keep only the part between:
-
-```
------BEGIN RSA PRIVATE KEY-----
-
------END PRIVATE KEY-----
-```
-
 Make sure that at API level (APIs and auth) you have enabled:
 
 * Google Compute Engine
@@ -38,5 +30,5 @@ Make sure that at API level (APIs and auth) you have enabled:
 After that you are ready to use the Tester JAR.
 
 ```
-java -jar gcc-credential-tester.jar <keyFile> <subscriptionId> <projectId>
+java -jar gcc-credential-tester.jar <keyPEMFile> <subscriptionId> <projectId>
 ```
