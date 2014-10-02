@@ -36,8 +36,15 @@ public class GccTesterMain {
     public static void main(String[] args) {
 
         if (args.length < 3) {
-          System.out.println("Usage:");
-          System.out.println("  java -jar gcc-credential-tester.jar <keyFile> <subscriptionId> <projectId>");
+            System.out.println("Usage:");
+            System.out.println("args[0]: key file path");
+            System.out.println("args[1]: service account mail");
+            System.out.println("args[2]: project id");
+            System.out.println("  java -jar gcc-credential-tester.jar <keyFile> <subscriptionId> <projectId>");
+            System.exit(-1);
+        }
+        if(!args[1].endsWith("@developer.gserviceaccount.com")) {
+            System.out.println("Serviceaccount is in wrong format it should ends with @developer.gserviceaccount.com");
             System.exit(-1);
         }
         String key = "";
@@ -46,7 +53,7 @@ public class GccTesterMain {
             key = IOUtils.toString(fisTargetFile, "UTF-8");
         } catch (Exception e) {
             System.out.println("File not found");
-            System.exit(1);
+            System.exit(-1);
         }
 
         validate(key);
@@ -54,7 +61,7 @@ public class GccTesterMain {
 
         if(compute == null){
             System.out.println("Your credentials are invalid...");
-            System.exit(1);
+            System.exit(-1);
         } else {
             try {
                 Compute.Images.List list = compute.images().list(args[2]);
@@ -65,7 +72,7 @@ public class GccTesterMain {
             } catch (IOException e) {
                 System.out.println("Your credentials are invalid: " + e.getMessage());
                 System.out.println(e);
-                System.exit(1);
+                System.exit(-1);
             }
         }
         System.out.println("Your credential is ok...");
@@ -90,13 +97,13 @@ public class GccTesterMain {
             return compute;
         } catch (GeneralSecurityException e) {
             System.out.println("General security exception: " + e.getMessage());
-            System.exit(1);
+            System.exit(-1);
         } catch (IOException e) {
             System.out.println("Ioexception under the compute creation: " + e.getMessage());
-            System.exit(1);
+            System.exit(-1);
         } catch (Exception e) {
             System.out.println("Error occured: " + e.getMessage());
-            System.exit(1);
+            System.exit(-1);
         }
         return null;
     }
