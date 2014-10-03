@@ -30,7 +30,7 @@ Make sure that at API level (**APIs and auth** menu) you have enabled:
 After that you are ready to use the Tester JAR.
 
 ```
-java -jar gcc-credential-tester.jar <keyPEMFile> <subscriptionId> <projectId>
+java -jar gcc-credential-tester.jar <keyPEMFile> <serviceAccountEmailAddress> <projectId>
 ```
 The expected result should be something like this:
 

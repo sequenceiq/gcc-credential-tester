@@ -40,7 +40,7 @@ public class GccTesterMain {
             System.out.println("args[0]: key file path");
             System.out.println("args[1]: service account mail");
             System.out.println("args[2]: project id");
-            System.out.println("  java -jar gcc-credential-tester.jar <keyFile> <subscriptionId> <projectId>");
+            System.out.println("  java -jar gcc-credential-tester.jar <keyFile> <serviceAccountEmailAddress> <projectId>");
             System.exit(-1);
         }
         if(!args[1].endsWith("@developer.gserviceaccount.com")) {
